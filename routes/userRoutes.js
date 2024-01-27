@@ -1,20 +1,21 @@
 const express = require('express');
 const multer = require('multer');
+const Swal = require('sweetalert2');
 const { getUsersSpreadsheetData, updateUsersSpreadsheetData } = require('./spreadsheetUtils');
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-
 router.get('/', (req, res) => {
      res.render('index');
 });
+
 router.get('/register', (req, res) => {
      res.render('register');
 });
 
 router.get('/login', (req, res) => {
-     res.render('login');
+     res.render('login', { failedLogin: false });
 });
 
 router.post('/register', upload.none(), async (req, res) => {
@@ -50,10 +51,9 @@ router.post('/login', upload.none(), async (req, res) => {
 
           if (user) {
                req.session.isLoggedIn = true;
-
                res.redirect('/dashboard');
           } else {
-               res.status(401).send('Credenciales incorrectas');
+               res.render('login', { failedLogin: true });
           }
      } catch (error) {
           console.error('Error al procesar la solicitud de login:', error);

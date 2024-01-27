@@ -5,7 +5,7 @@ const path = require('path');
 const formRoutes = require('./routes/formRoutes');
 const userRoutes = require('./routes/userRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
-
+const Swal = require('sweetalert2')
 const app = express();
 const PORT = process.env.PORT || 3000;
 
