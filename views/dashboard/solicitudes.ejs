@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        #reloadButton {
+            font-size: 13px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar" class="js-sidebar">
+            <!-- Content For Sidebar -->
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="#"></a>
+                </div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Admin Elements
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/dashboard" class="sidebar-link">
+                            <i class="fa-solid fa-list pe-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="sidebar-header">
+                        Acciones
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/matriculas" class="sidebar-link">
+                            <i class="fa-solid fa-file pe-2"></i>
+                            Matrículas
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/solicitudes" class="sidebar-link">
+                            <i class="fa-solid fa-envelope pe-2"></i>
+                            Solicitudes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <button id="reloadButton" class="btn btn-primary">Recargar Página</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Formulario</a>
+                    </li>
+<li class="nav-item">
+    <a class="nav-link" href="/logout">Cerrar Sesión</a>
+</li>
+                </ul>
+            </nav>
+            <main class="content px-3 py-2 table-container">
+                <div class="container-fluid mt-3">
+                    <h4 style="color: #007bff;">Solicitudes de Certificado</h4>
+                    <div class="mb-3">
+                        <label for="dniSearch" class="form-label">Buscar por DNI:</label>
+                        <input type="text" class="form-control" id="dniSearch" placeholder="Ingrese DNI">
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Fecha</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Correo Electrónico</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Nombres</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Apellidos</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">DNI</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Carrera</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Voucher</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Estado</th>
+                                <th style="background-color: #f8f9fa; color: #343a40;">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="solicitudesBody">
+                            <% data.forEach(entry=> { %>
+                                <tr>
+                                    <td>
+                                        <%= entry[0] %>
+                                    </td>
+                                    <td>
+                                        <%= entry[1] %>
+                                    </td>
+                                    <td>
+                                        <%= entry[2] %>
+                                    </td>
+                                    <td>
+                                        <%= entry[3] %>
+                                    </td>
+                                    <td>
+                                        <%= entry[4] %>
+                                    </td>
+                                    <td>
+                                        <%= entry[5] %>
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="showImage('<%= entry[6] %>')">Ver Imagen</a>
+                                    </td>
+                                    <td>
+                                        <% if (entry[7]==='Matriculado' ) { %>
+                                            <span style="color: #28a745;"><i class="fas fa-check"></i></span>
+                                            <% } else if (entry[7]==='No Matriculado' ) { %>
+                                                <span style="color: #dc3545;"><i class="fas fa-times"></i></span>
+                                                <% } %>
+                                                    <%= entry[7] %>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm ms-2">Aceptar</button>
+                                        <button class="btn btn-danger btn-sm ms-1">Rechazar</button>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dniSearchInput = document.getElementById('dniSearch');
+            const solicitudesBody = document.getElementById('solicitudesBody');
+            const originalData = <%- JSON.stringify(data.slice(1)) %>;
+
+function extractDriveFileId(link) {
+    const matchOpenId = link.match(/\/open\?id=([^/]+)/);
+    const matchFileId = link.match(/\/file\/d\/([^/]+)\/view/);
+
+    // Verificar si se encontró un ID en alguno de los formatos esperados
+    const fileId = matchOpenId ? matchOpenId[1] : (matchFileId ? matchFileId[1] : undefined);
+
+    // Mostrar el ID en la consola
+    console.log("ID extraído:", fileId);
+
+    return fileId;
+}
+
+
+
+window.showImage = function (imageUrl) {
+    const fileId = extractDriveFileId(imageUrl);
+
+    if (fileId !== undefined) {
+        // Construir la URL solo si el ID es válido
+        const directDownloadLink = `https://drive.google.com/uc?id=${fileId}`;
+
+        // Mostrar la imagen solo si se puede cargar
+        const img = new Image();
+        img.onload = function () {
+            const modalBody = document.getElementById('imageModalBody');
+            modalBody.innerHTML = `<img src="${directDownloadLink}" alt="Imagen">`;
+
+            const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            myModal.show();
+        };
+
+        img.onerror = function () {
+            console.error("No se puede cargar la imagen.");
+        };
+
+        img.src = directDownloadLink;
+    } else {
+        console.error("ID inválido. No se puede construir la URL.");
+    }
+}
+
+            function renderTable(data) {
+                solicitudesBody.innerHTML = '';
+
+                data.forEach(entry => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${entry[0]}</td>
+                        <td>${entry[1]}</td>
+                        <td>${entry[2]}</td>
+                        <td>${entry[3]}</td>
+                        <td>${entry[4]}</td>
+                        <td>${entry[5]}</td>
+                        <td>
+                            <a href="javascript:void(0);" onclick="showImage('${entry[6]}')">Ver Imagen</a>
+                        </td>
+                        <td>
+                            ${entry[7] === 'Matriculado' ? '<span style="color: #28a745;"><i class="fas fa-check"></i></span>' :
+                            (entry[7] === 'No Matriculado' ? '<span style="color: #dc3545;"><i class="fas fa-times"></i></span>' : '')}
+                            ${entry[7]}
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-sm ms-2">Aceptar</button>
+                            <button class="btn btn-danger btn-sm ms-1">Rechazar</button>
+                        </td>
+                    `;
+                    solicitudesBody.appendChild(row);
+
+                    const textElement = row.querySelector('td:last-child');
+                    if (textElement.innerText.trim() === 'Matriculado') {
+                        textElement.style.color = '#28a745'; // Green
+                    } else if (textElement.innerText.trim() === 'No Matriculado') {
+                        textElement.style.color = '#dc3545'; // Red
+                    }
+                });
+            }
+
+            dniSearchInput.addEventListener('input', function () {
+                const searchValue = dniSearchInput.value.trim().toLowerCase();
+                const filteredData = originalData.filter(entry => entry[2].toLowerCase().includes(searchValue));
+                renderTable(filteredData);
+            });
+
+            renderTable(originalData);
+
+            const reloadButton = document.getElementById('reloadButton');
+            reloadButton.addEventListener('click', function () {
+                location.reload(); 
+            });
+        });
+    </script>
+    <div class="modal" id="imageModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Imagen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="imageModalBody">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
