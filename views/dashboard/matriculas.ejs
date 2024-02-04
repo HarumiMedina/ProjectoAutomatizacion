@@ -2,146 +2,198 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.css">
-        <style>
-        #reloadButton {
-            font-size: 13px;
-        }
-    </style>
-        <script>
-        var initialData = <%- JSON.stringify(data.slice(1)) %>;
-    </script>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Matriculados</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="css/styles.css">
+     <style>
+          .table-container {
+               overflow-x: auto;
+          }
 
+          table {
+               width: 100%;
+               border-collapse: collapse;
+               margin-top: 20px;
+          }
+
+          th,
+          td {
+               text-align: center;
+               padding: 12px;
+               border: 1px solid #dee2e6;
+          }
+
+          thead {
+               background-color: #343a40;
+               color: #fff;
+          }
+
+          tbody tr:nth-child(odd) {
+               background-color: #f8f9fa;
+          }
+
+          tbody tr:hover {
+               background-color: #e9ecef;
+               color: black;
+          }
+
+          .btn-verify {
+               padding: 6px 12px;
+          }
+
+          .btn-verify i {
+               margin-right: 5px;
+          }
+
+          .text-danger {
+               color: #dc3545;
+          }
+     </style>
 </head>
 
-<body style="background-color: #f8f9fa;">
-    <div class="wrapper">
-        <aside id="sidebar" class="js-sidebar">
-            <!-- Content For Sidebar -->
-            <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="#"></a>
-                </div>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Admin Elements
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="/dashboard" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar-header">
-                        Acciones
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="/matriculas" class="sidebar-link">
-                            <i class="fa-solid fa-file pe-2"></i>
-                            Matrículas
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="/solicitudes" class="sidebar-link">
-                            <i class="fa-solid fa-envelope pe-2"></i>
-                            Solicitudes
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-        <div class="main">
-        <nav class="navbar navbar-expand px-3 border-bottom">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <button id="reloadButton" class="btn btn-primary">Recargar Página</button>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Formulario</a>
-                </li>
-<li class="nav-item">
-    <a class="nav-link" href="/logout">Cerrar Sesión</a>
-</li>
-            </ul>
-        </nav>
-            <main class="content px-3 py-2">
-                <div class="container-fluid mt-3">
-                    <h4 style="color: #007bff;">Matrículas</h4>
-                    <div class="mb-3">
-                        <label for="dniSearch" class="form-label">Buscar por DNI:</label>
-                        <input type="text" class="form-control" id="dniSearch" placeholder="Ingrese DNI">
+<body>
+     <div class="wrapper">
+          <aside id="sidebar" class="js-sidebar">
+               <div class="h-100">
+                    <div class="sidebar-logo">
+                         <a href="/dashboard">Proyecto Automatizacion</a>
                     </div>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="background-color: #f8f9fa; color: #343a40;">Nombres</th>
-                                <th style="background-color: #f8f9fa; color: #343a40;">Apellidos</th>
-                                <th style="background-color: #f8f9fa; color: #343a40;">DNI</th>
-                                <th style="background-color: #f8f9fa; color: #343a40;">Carrera</th>
-                                <th style="background-color: #f8f9fa; color: #343a40;">Cursos</th>
-                            </tr>
-                        </thead>
-                        <tbody id="matriculasTableBody">
-                            <% data.slice(1).forEach(entry => { %>
-                                <tr>
-                                    <td><%= entry[0] %></td>
-                                    <td><%= entry[1] %></td>
-                                    <td><%= entry[2] %></td>
-                                    <td><%= entry[3] %></td>
-                                    <td><%= entry[4] %></td>
-                                </tr>
-                            <% }); %>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const dniSearchInput = document.getElementById('dniSearch');
-            const matriculasTableBody = document.getElementById('matriculasTableBody');
-            let currentData = initialData.slice(); // Copia inicial de los datos
+                    <ul class="sidebar-nav">
+                         <li class="sidebar-header">
+                              Panel Administrativo
+                         </li>
+                         <li class="sidebar-item">
+                              <a href="#" class="sidebar-link collapsed" data-bs-target="#pages"
+                                   data-bs-toggle="collapse" aria-expanded="false"><i
+                                        class="fa-solid fa-file-lines pe-2"></i>
+                                   Formularios
+                              </a>
+                              <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                   <li class="sidebar-item">
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScOO-zTZ6k-O-kZdV4UNfFB4PMA3azKPr7DU8jDzBBoKt0zIw/viewform"
+                                             class="sidebar-link"><i class="fa-solid fa-clipboard pe-2"></i>Form.
+                                             Matrículas</a>
+                                   </li>
+                                   <li class="sidebar-item">
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc9OtInBXC61Nxoq5p7c4BVy17CUVp1ub-QfdI2c_WSoE3QCQ/viewform"
+                                             class="sidebar-link"><i class="fa-solid fa-certificate pe-2"></i>Form.
+                                             Certificado</a>
+                                   </li>
+                              </ul>
+                         </li>
+                         <li class="sidebar-item">
+                              <a href="#" class="sidebar-link collapsed" data-bs-target="#posts"
+                                   data-bs-toggle="collapse" aria-expanded="false"><i
+                                        class="fa-solid fa-sliders pe-2"></i>
+                                   Registros
+                              </a>
+                              <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                   <li class="sidebar-item">
+                                        <a href="/matriculas" class="sidebar-link"><i
+                                                  class="fa-solid fa-user-graduate pe-2"></i>Matriculados</a>
+                                   </li>
+                                   <li class="sidebar-item">
+                                        <a href="/solicitudes" class="sidebar-link"><i
+                                                  class="fa-solid fa-clipboard-list pe-2"></i>Solicitudes</a>
+                                   </li>
+                              </ul>
+                         </li>
+                    </ul>
+               </div>
+          </aside>
+          <div class="main">
+               <nav class="navbar navbar-expand px-3 border-bottom">
+                    <button class="btn" id="sidebar-toggle" type="button">
+                         <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse navbar">
+                         <ul class="navbar-nav">
+                              <li class="nav-item dropdown">
+                                   <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                        <i class="fa-solid fa-user user-demo"></i>
+                                   </a>
+                                   <div class="dropdown-menu dropdown-menu-end">
+                                        <a href="/logout" class="dropdown-item">Cerrar Sesión</a>
+                                   </div>
+                              </li>
+                         </ul>
+                    </div>
+               </nav>
+               <main class="content px-3 py-2">
+                    <div class="container-fluid mt-3 table-container">
+                         <h4 class="text-center fontTitle" style="color: #007bff;">Matrículas</h4>
+                         <div class="input-group mt-3">
+                              <input type="text" id="search-dni" class="form-control" placeholder="Buscar por DNI"
+                                   aria-label="Buscar por DNI">
+                         </div>
 
-            function renderTable(data) {
-                matriculasTableBody.innerHTML = '';
+                         <table id="matriculas-table">
+                              <thead>
+                                   <tr>
+                                        <th>Fecha de Matrícula</th>
+                                        <th>Email</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Dni</th>
+                                        <th>Carrera</th>
+                                        <th>Curso</th>
+                                        <th>Pago</th>
+                                   </tr>
+                              </thead>
+                              <tbody>
+                                   <% matriculasData.forEach((matricula, index)=> { %>
+                                        <tr>
+                                             <td>
+                                                  <%= matricula[0] %>
+                                             </td>
+                                             <td>
+                                                  <%= matricula[1] %>
+                                             </td>
+                                             <td>
+                                                  <%= matricula[2] %>
+                                             </td>
+                                             <td>
+                                                  <%= matricula[3] %>
+                                             </td>
+                                             <td>
+                                                  <%= matricula[4] %>
+                                             </td>
+                                             <td>
+                                                  <%= matricula[5] %>
+                                             </td>
+                                             <td>
+                                                  <%= matricula[6] %>
+                                             </td>
+                                             <td>
+                                                  <% if (matricula[7]) { %>
+                                                       <a href="<%= matricula[7] %>" target="_blank"
+                                                            class="btn btn-success btn-verify">
+                                                            <i class="fa-solid fa-check"></i> Verificar Voucher
+                                                       </a>
+                                                       <% } else { %>
+                                                            <span class="text-danger">Sin Pago</span>
+                                                            <% } %>
+                                             </td>
+                                        </tr>
+                                        <% }); %>
+                              </tbody>
+                         </table>
+                    </div>
+               </main>
+               <a href="#" class="theme-toggle">
+                    <i class="fa-regular fa-moon"></i>
+                    <i class="fa-regular fa-sun"></i>
+               </a>
 
-                data.forEach(entry => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${entry[0]}</td>
-                        <td>${entry[1]}</td>
-                        <td>${entry[2]}</td>
-                        <td>${entry[3]}</td>
-                        <td>${entry[4]}</td>
-                    `;
-                    matriculasTableBody.appendChild(row);
-                });
-            }
-
-            function filterData() {
-                const searchValue = dniSearchInput.value.trim().toLowerCase();
-                const filteredData = currentData.filter(entry => entry[2].toLowerCase().includes(searchValue));
-                renderTable(filteredData);
-            }
-
-            dniSearchInput.addEventListener('input', filterData);
-            renderTable(currentData);
-
-            reloadButton.addEventListener('click', function () {
-
-                currentData = initialData.slice();
-                renderTable(currentData); 
-            });
-        });
-    </script>
+          </div>
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="js/script.js"></script>
+     <script src="js/scriptDni.js"></script>
 </body>
 
 </html>

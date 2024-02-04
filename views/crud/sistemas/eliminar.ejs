@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Curso de Sistemas</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <h1>Eliminar Curso de Sistemas</h1>
+
+    <p>¿Estás seguro de que deseas eliminar el siguiente curso?</p>
+
+    <ul>
+        <li><strong>Curso:</strong> <%= curso[0] %></li>
+        <li><strong>Inicio:</strong> <%= curso[1] %></li>
+        <li><strong>Fin:</strong> <%= curso[2] %></li>
+    </ul>
+
+    <form action="/cursos_sistemas/eliminar/<%= courseId %>" method="POST">
+        <button type="submit">Eliminar</button>
+        <a href="/cursos_sistemas">Cancelar</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+const sidebarToggle = document.querySelector("#sidebar-toggle");
+sidebarToggle.addEventListener("click", function () {
+     document.querySelector("#sidebar").classList.toggle("collapsed");
+});
+
+document.querySelector(".theme-toggle").addEventListener("click", () => {
+     toggleLocalStorage();
+     toggleRootClass();
+     toggleImageColors();
+});
+
+function toggleRootClass() {
+     const current = document.documentElement.getAttribute('data-bs-theme');
+     const inverted = current == 'dark' ? 'light' : 'dark';
+     document.documentElement.setAttribute('data-bs-theme', inverted);
+}
+
+function toggleLocalStorage() {
+     if (isLight()) {
+          localStorage.removeItem("light");
+     } else {
+          localStorage.setItem("light", "set");
+     }
+}
+
+function isLight() {
+     return localStorage.getItem("light");
+}
+
+function toggleImageColors() {
+     const imgPC = document.getElementById('img-pc');
+     imgPC.classList.toggle('invert');
+}
+
+if (isLight()) {
+     toggleRootClass();
+}
+setInterval(() => {
+     location.reload();
+}, 300000);
+

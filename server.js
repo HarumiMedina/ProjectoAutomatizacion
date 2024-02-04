@@ -1,4 +1,4 @@
-// server.js
+
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -6,10 +6,13 @@ const formRoutes = require('./routes/formRoutes');
 const userRoutes = require('./routes/userRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const Swal = require('sweetalert2')
+const morgan = require('morgan');
+const cors = require("cors");
+
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 
-// Configurar la sesión
 app.use(session({
      secret: 'de123asdsadfiji132j4i1',
      resave: false,
@@ -29,6 +32,8 @@ app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use(cors());
 
 app.use((req, res, next) => {
      const allowedPaths = ['/login', '/register'];

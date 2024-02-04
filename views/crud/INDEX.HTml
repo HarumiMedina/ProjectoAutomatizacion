@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Panel Administrativo</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="/public/css/styles.css">
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <style>
+          h1 {
+               color: #28a745;
+          }
+
+          .table {
+               width: 100%;
+               max-width: 100%;
+               margin-bottom: 1rem;
+               background-color: #f8f9fa;
+          }
+
+          .table th,
+          .table td {
+               padding: 0.75rem;
+               vertical-align: top;
+               border-top: 1px solid #dee2e6;
+               color: #495057 !important;
+          }
+
+          .table thead th {
+               vertical-align: bottom;
+               border-bottom: 2px solid #dee2e6;
+               background-color: #007bff;
+               text-align: center;
+               color: white !important;
+          }
+
+          .table tbody tr:nth-child(odd) {
+               background-color: #e2e6ea;
+          }
+
+          .table tbody tr:nth-child(even) {
+               background-color: #d3d9df;
+          }
+
+          .table tbody+tbody {
+               border-top: 2px solid #dee2e6;
+          }
+
+          .btn {
+               padding: 0.375rem 0.75rem;
+               font-size: 1rem;
+          }
+
+          .btn-success {
+               color: black;
+               background-color: #28a745;
+               border-color: #28a745;
+          }
+
+          .btn-success:hover {
+               background-color: #218838;
+               border-color: #1e7e34;
+          }
+
+          .btn-primary {
+               color: #fff;
+               background-color: #007bff;
+               border-color: #007bff;
+          }
+
+          .btn-primary:hover {
+               background-color: #0056b3;
+               border-color: #004d99;
+          }
+
+          .btn-danger {
+               color: #fff;
+               background-color: #dc3545;
+               border-color: #dc3545;
+          }
+
+          .btn-danger:hover {
+               background-color: #c82333;
+               border-color: #bd2130;
+          }
+
+          .mt-3 {
+               margin-top: 1rem;
+          }
+     </style>
+</head>
+
+<body>
+     <div class="wrapper">
+          <aside id="sidebar" class="js-sidebar">
+               <div class="h-100">
+                    <div class="sidebar-logo">
+                         <a href="/dashboard">Proyecto Automatizacion</a>
+                    </div>
+                    <ul class="sidebar-nav">
+                         <li class="sidebar-header">
+                              Panel Administrativo
+                         </li>
+                         <li class="sidebar-item">
+                              <a href="#" class="sidebar-link collapsed" data-bs-target="#pages"
+                                   data-bs-toggle="collapse" aria-expanded="false"><i
+                                        class="fa-solid fa-file-lines pe-2"></i>
+                                   Formularios
+                              </a>
+                              <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                   <li class="sidebar-item">
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScOO-zTZ6k-O-kZdV4UNfFB4PMA3azKPr7DU8jDzBBoKt0zIw/viewform"
+                                             class="sidebar-link"><i class="fa-solid fa-clipboard pe-2"></i>Form.
+                                             Matrículas</a>
+                                   </li>
+                                   <li class="sidebar-item">
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc9OtInBXC61Nxoq5p7c4BVy17CUVp1ub-QfdI2c_WSoE3QCQ/viewform"
+                                             class="sidebar-link"><i class="fa-solid fa-certificate pe-2"></i>Form.
+                                             Certificado</a>
+                                   </li>
+                              </ul>
+                         </li>
+                         <li class="sidebar-item">
+                              <a href="#" class="sidebar-link collapsed" data-bs-target="#posts"
+                                   data-bs-toggle="collapse" aria-expanded="false"><i
+                                        class="fa-solid fa-sliders pe-2"></i>
+                                   Registros
+                              </a>
+                              <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                   <li class="sidebar-item">
+                                        <a href="/matriculas" class="sidebar-link"><i
+                                                  class="fa-solid fa-user-graduate pe-2"></i>Matriculados</a>
+                                   </li>
+                                   <li class="sidebar-item">
+                                        <a href="/solicitudes" class="sidebar-link"><i
+                                                  class="fa-solid fa-clipboard-list pe-2"></i>Solicitudes</a>
+                                   </li>
+                              </ul>
+                         </li>
+                    </ul>
+               </div>
+          </aside>
+          <div class="main">
+               <nav class="navbar navbar-expand px-3 border-bottom">
+                    <button class="btn" id="sidebar-toggle" type="button">
+                         <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse navbar">
+                         <ul class="navbar-nav">
+                              <li class="nav-item dropdown">
+                                   <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                        <i class="fa-solid fa-user user-demo"></i>
+                                   </a>
+                                   <div class="dropdown-menu dropdown-menu-end">
+                                        <a href="/logout" class="dropdown-item">Cerrar Sesión</a>
+                                   </div>
+                              </li>
+                         </ul>
+                    </div>
+               </nav>
+               <main class="content px-3 py-2">
+                    <div class="container-fluid">
+                         <h1 class="mb-4">Cursos de Produccion Agraria</h1>
+                         <div class="table-responsive">
+                              <table class="table table-striped table-bordered table-hover">
+                                   <thead class="table-light">
+                                        <tr>
+                                             <th>Nombre</th>
+                                             <th>Inicio</th>
+                                             <th>Fin</th>
+                                             <th>Horas</th>
+                                             <th>Carpeta 1</th>
+                                             <th>Carpeta 2</th>
+                                             <th>Enlace 1</th>
+                                             <th>Enlace 2</th>
+                                             <th>Ponentes</th>
+                                             <th>Temas</th>
+                                             <th>Acciones</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <% cursosData.forEach((curso, index)=> { %>
+                                             <tr>
+                                                  <td>
+                                                       <%= curso[0] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[1] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[2] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[3] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[4] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[5] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[6] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[7] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[8] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[9] %>, <%= curso[10] %>, <%= curso[11] %>
+                                                  </td>
+                                                  <td>
+                                                       <a href="/cursos_produccion/editar/<%= index %>"
+                                                            class="btn btn-primary btn-sm me-2">Editar</a>
+                                                       <a href="/cursos_produccion/eliminar/<%= index %>"
+                                                            class="btn btn-danger btn-sm mt-3">Eliminar</a>
+                                                  </td>
+                                             </tr>
+                                             <% }); %>
+                                   </tbody>
+                              </table>
+                         </div>
+                         <a href="/cursos_sistemas/agregar" class="btn btn-success mt-3">Agregar nuevo curso</a>
+                    </div>
+               </main>
+               <a href="#" class="theme-toggle">
+                    <i class="fa-regular fa-moon"></i>
+                    <i class="fa-regular fa-sun"></i>
+               </a>
+          </div>
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="/public/js/script.js"></script>
+</body>
+
+</html>

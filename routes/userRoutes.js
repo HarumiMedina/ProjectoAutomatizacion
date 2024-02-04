@@ -51,6 +51,7 @@ router.post('/login', upload.none(), async (req, res) => {
 
           if (user) {
                req.session.isLoggedIn = true;
+               req.session.username = username;
                res.redirect('/dashboard');
           } else {
                res.render('login', { failedLogin: true });
