@@ -38,7 +38,7 @@ router.post('/formulario', upload.none(), async (req, res) => {
 
           await updateUsersSpreadsheetData(existingData, 'CURSOS_SISTEMAS');
 
-          res.redirect('/dashboard')
+          res.redirect('/cursos_sistemas')
      } catch (error) {
           console.error('Error al procesar la solicitud:', error);
           res.status(500).send('Error interno del servidor');
@@ -69,7 +69,7 @@ router.post('/formulario_produccion', upload.none(), async (req, res) => {
 
           await updateUsersSpreadsheetData(existingData, 'CURSOS_PRODUCCION');
 
-          res.redirect('/dashboard')
+          res.redirect('/curso_produccion')
      } catch (error) {
           console.error('Error al procesar la solicitud:', error);
           res.status(500).send('Error interno del servidor');
