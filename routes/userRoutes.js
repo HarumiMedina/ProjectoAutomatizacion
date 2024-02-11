@@ -5,10 +5,8 @@ const { getUsersSpreadsheetData, updateUsersSpreadsheetData } = require('./sprea
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
+
 router.get('/', (req, res) => {
-     res.render('index');
-});
-router.get('/login', (req, res) => {
      res.render('login', { failedLogin: false });
 
 })
@@ -34,7 +32,7 @@ router.post('/register', upload.none(), async (req, res) => {
           await updateUsersSpreadsheetData(existingUsersData, 'Usuarios');
           console.log('Usuario registrado:', newUser);
 
-          res.redirect('/login');
+          res.redirect('/');
      } catch (error) {
           console.error('Error al procesar la solicitud de registro:', error);
           res.status(500).send('Error interno del servidor');
@@ -67,7 +65,7 @@ router.get('/logout', (req, res) => {
           if (err) {
                console.error('Error al cerrar la sesión:', err);
           }
-          res.redirect('/login');
+          res.redirect('/');
      });
 });
 
