@@ -179,48 +179,47 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% cursosData.forEach((curso, index)=> { %>
-                                <tr>
-                                    <td>
-                                        <%= curso[0] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[1] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[2] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[3] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[4] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[5] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[6] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[7] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[8] %>
-                                    </td>
-                                    <td>
-                                        <%= curso[9] %>, <%= curso[10] %>, <%= curso[11] %>
-                                    </td>
-                                    <td>
-                                        <a href="/cursos_sistemas/editar/<%= index %>"
-                                            class="btn btn-primary btn-sm me-2">Editar</a>
-                                        <a href="/cursos_sistemas/eliminar/<%= index %>"
-                                            class="btn btn-danger btn-sm mt-3">Eliminar</a>
-                                    </td>
-                                </tr>
-                                <% }); %>
-                        </tbody>
+                                   <tbody>
+                                        <% cursosData.forEach((curso, index )=> { %>
+                                             <tr class="bg-white">
+                                                  <td>
+                                                       <%= curso[0] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[1] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[2] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[3] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[4] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[5] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[6] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[7] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[8] %>
+                                                  </td>
+                                                  <td>
+                                                       <%= curso[9] %>, <%= curso[10] %>, <%= curso[11] %>
+                                                  </td>
+                                                  <td>
+                                                       <a href="/cursos_sistemas/editar/<%= index  %>"
+                                                            class="btn btn-primary btn-sm me-2">Editar</a>
+
+                                                  </td>
+                                             </tr>
+                                             <% }); %>
+                                   </tbody>
                     </table>
                 </div>
 

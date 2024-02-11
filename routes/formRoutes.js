@@ -102,7 +102,7 @@ router.get('/cursos_produccion/editar/:id', async (req, res) => {
           const data = await getUsersSpreadsheetData('CURSOS_PRODUCCION');
 
           if (courseId >= 0 && courseId < data.length - 1) {
-               const curso = data[courseId];
+               const curso = data[courseId + 1];
                res.render('crud/produccion/editar', { curso, courseId });
           } else {
                res.status(404).send('Curso no encontrado');
@@ -196,7 +196,7 @@ router.get('/cursos_sistemas/editar/:id', async (req, res) => {
           const data = await getUsersSpreadsheetData('CURSOS_SISTEMAS');
 
           if (courseId >= 0 && courseId < data.length - 1) {
-               const curso = data[courseId];
+               const curso = data[courseId + 1];
                res.render('crud/sistemas/editar', { curso, courseId });
           } else {
                res.status(404).send('Curso no encontrado');
@@ -206,6 +206,7 @@ router.get('/cursos_sistemas/editar/:id', async (req, res) => {
           res.status(500).send('Error interno del servidor');
      }
 });
+
 
 router.post('/cursos_sistemas/editar/:id', upload.none(), async (req, res) => {
      try {
@@ -241,8 +242,6 @@ router.post('/cursos_sistemas/editar/:id', upload.none(), async (req, res) => {
           res.status(500).send('Error interno del servidor');
      }
 });
-
-
 
 
 

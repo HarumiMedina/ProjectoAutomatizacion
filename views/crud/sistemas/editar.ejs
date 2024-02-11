@@ -91,49 +91,49 @@
         <form action="/cursos_sistemas/editar/<%= courseId %>" method="post">
             <div class="mb-3">
                 <label for="curso"><i class="fas fa-book"></i> Nombre del nuevo Curso</label>
-                <input type="text" class="form-control" id="curso" name="curso" required>
+                <input type="text" class="form-control" id="curso" name="curso" value="<%= curso[0] %>" required>
             </div>
             <div class="mb-3 row">
                 <div class="col-md-6">
                     <label for="inicio"><i class="far fa-calendar-alt"></i> Inicio</label>
-                    <input type="text" class="form-control datepicker" id="inicio" name="inicio" required>
+                    <input type="text" class="form-control datepicker" id="inicio" name="inicio" value="<%= curso[1] %>" required>
                 </div>
                 <div class="col-md-6">
                     <label for="fin"><i class="far fa-calendar-alt ml-4"></i> Fin</label>
-                    <input type="text" class="form-control datepicker" id="fin" name="fin" required>
+                    <input type="text" class="form-control datepicker" id="fin" name="fin" value="<%= curso[2] %>" required>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="horas"><i class="far fa-clock"></i> Horas</label>
-                <input type="text" class="form-control" id="horas" name="horas" placeholder="Ej. 70hr" required>
+                <input type="text" class="form-control" id="horas" name="horas" placeholder="Ej. 70hr" value="<%= curso[3] %>" required>
             </div>
             <div class="mb-3 row">
                 <div class="col-md-6">
                     <label for="carpeta1"><i class="fas fa-folder-open"></i> Carpeta 1</label>
-                    <input type="url" class="form-control" id="carpeta1" name="carpeta1" required>
+                    <input type="url" class="form-control" id="carpeta1" name="carpeta1" value="<%= curso[4] %>" required>
                 </div>
                 <div class="col-md-6">
                     <label for="carpeta2"><i class="fas fa-folder-open"></i> Carpeta 2</label>
-                    <input type="url" class="form-control" id="carpeta2" name="carpeta2" required>
+                    <input type="url" class="form-control" id="carpeta2" name="carpeta2" value="<%= curso[5] %>" required>
                 </div>
             </div>
             <div class="mb-3 row">
                 <div class="col-md-6">
                     <label for="enlace1"><i class="fas fa-link"></i> Enlace 1</label>
-                    <input type="url" class="form-control" id="enlace1" name="enlace1" required>
+                    <input type="url" class="form-control" id="enlace1" name="enlace1" value="<%= curso[6] %>" required>
                 </div>
                 <div class="col-md-6">
                     <label for="enlace2"><i class="fas fa-link"></i> Enlace 2</label>
-                    <input type="url" class="form-control" id="enlace2" name="enlace2" required>
+                    <input type="url" class="form-control" id="enlace2" name="enlace2" value="<%= curso[7] %>" required>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="ponentes"><i class="fas fa-users"></i> Ponentes</label>
-                <input type="text" class="form-control" id="ponentes" name="ponentes" required>
+                <input type="text" class="form-control" id="ponentes" name="ponentes" value="<%= curso[8] %>" required>
             </div>
             <div class="mb-3">
                 <label for="temas"><i class="fas fa-list"></i> Temas (Separados por comas)</label>
-                <input type="text" class="form-control" id="temas" name="temas" required>
+                <input type="text" class="form-control" id="temas" name="temas" value="<%= curso[9] %>, <%= curso[10] %>, <%= curso[11] %>"  required>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>

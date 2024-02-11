@@ -28,11 +28,19 @@ router.get('/matriculas', async (req, res) => {
 });
 
 router.get('/solicitudes', async (req, res) => {
+     res.redirect('https://script.google.com/a/macros/vallegrande.edu.pe/s/AKfycbwTp0QS1THzGoI8FPnAX3YdCOfapCGEEKN_HTxgGkKr-hBRhmFgxQOE0UpEsYNJGRq_wA/exec');
+
+});
+const { updateMatriculaStatus } = require('./spreadsheetUtils');
+
+router.post('/actualizar-matricula', async (req, res) => {
+     const { index, fechaSolicitud, estado } = req.body;
+
      try {
-          const data = await getUsersSpreadsheetData('FormCertificado');
-          res.render('dashboard/solicitudes', { solicitudesData: data.slice(1) });
+          await updateMatriculaStatus(index, estado);
+          res.sendStatus(200);
      } catch (error) {
-          console.error('Error al obtener datos de la hoja "FormCertificado":', error);
+          console.error('Error al actualizar el estado de matrícula:', error);
           res.status(500).send('Error interno del servidor');
      }
 });
